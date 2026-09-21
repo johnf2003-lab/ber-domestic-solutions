@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BER Domestic Solutions — Enda Boyce, BER Domestic Assessor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#0c1626;
+    --navy-900:#101f34;
+    --navy-800:#16293f;
+    --paper:#f4f5f0;
+    --paper-dim:#e8e9e1;
+    --ink:#132030;
+    --ink-soft:#4a5766;
+    --lime:#8bc53f;
+    --lime-deep:#5f9128;
+    --line:#c9cdbd;
+    --line-dark:rgba(244,245,240,0.16);
+    --a-green:#1e8f4e;
+    --b-green:#7ab648;
+    --c-yellow:#e8c435;
+    --d-orange:#e8912f;
+    --e-red:#d9612f;
+    --g-red:#b9312a;
+  }
+  :root:not([data-theme="light"]){ color-scheme: dark light; }
+  :root[data-theme="dark"]{ color-scheme: dark; }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#f4f5f0; --ink:#132030; /* brand paper stays fixed by design */
+    }
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-padding-top: calc(78px + env(safe-area-inset-top,0px)); scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', system-ui, sans-serif;
+    padding-top: env(safe-area-inset-top,0px);
+    padding-bottom: env(safe-area-inset-bottom,0px);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{ font-family:'Space Grotesk', 'Inter', system-ui, sans-serif; margin:0; letter-spacing:-0.01em; }
+  p{ margin:0; }
+  a{ color:inherit; }
+  img{ max-width:100%; }
+  .wrap{ max-width:1140px; margin:0 auto; padding:0 28px; }
+  .overflow-x{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    padding-top: env(safe-area-inset-top,0px);
+    background:rgba(12,22,38,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-dark);
+  }
+  .navrow{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+  .brand{ display:flex; align-items:center; gap:12px; color:var(--paper); text-decoration:none; }
+  .brand svg{ width:34px; height:34px; flex:none; }
+  .brand-text{ line-height:1.1; }
+  .brand-text .b1{ font-family:'Space Grotesk'; font-weight:700; font-size:17px; color:var(--paper); }
+  .brand-text .b2{ font-family:'Space Grotesk'; font-weight:600; font-size:12px; color:var(--lime); letter-spacing:0.02em; }
+  nav.links{ display:flex; align-items:center; gap:30px; }
+  nav.links a{ color:#cfd6de; text-decoration:none; font-size:14.5px; font-weight:500; }
+  nav.links a:hover{ color:var(--paper); }
+  .call-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--lime); color:var(--navy-950); font-weight:600; font-size:14px;
+    padding:10px 18px; border-radius:3px; text-decoration:none; white-space:nowrap;
+  }
+  .call-btn:hover{ background:#9fd458; }
+  .menu-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(1100px 500px at 82% -10%, rgba(139,197,63,0.14), transparent 60%),
+      linear-gradient(180deg, var(--navy-950), var(--navy-900) 60%, var(--navy-800));
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:center;
+    padding:76px 0 64px;
+  }
+  .eyebrow-line{ display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .eyebrow-line .dot{ width:8px; height:8px; border-radius:50%; background:var(--lime); flex:none; }
+  .eyebrow-line span{ font-size:13.5px; color:#b7c2cc; font-weight:500; }
+  .hero h1{
+    font-size:clamp(34px, 4.6vw, 54px); font-weight:700; line-height:1.06; color:var(--paper);
+    max-width:15ch;
+  }
+  .hero h1 em{ font-style:normal; color:var(--lime); }
+  .hero p.lede{
+    margin-top:22px; font-size:17.5px; line-height:1.6; color:#c3cbd2; max-width:46ch;
+  }
+  .hero-ctas{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--lime); color:var(--navy-950); font-weight:600; font-size:15px;
+    padding:14px 24px; border-radius:3px; text-decoration:none; border:1px solid var(--lime);
+  }
+  .btn-primary:hover{ background:#9fd458; }
+  .btn-ghost{
+    color:var(--paper); font-weight:600; font-size:15px; padding:14px 22px;
+    border-radius:3px; text-decoration:none; border:1px solid rgba(244,245,240,0.35);
+  }
+  .btn-ghost:hover{ border-color:var(--paper); }
+  .hero-foot{ margin-top:40px; display:flex; gap:28px; flex-wrap:wrap; }
+  .hero-foot div{ font-size:13px; color:#9caab5; border-left:2px solid var(--lime); padding-left:10px; line-height:1.4; }
+  .hero-foot strong{ display:block; color:var(--paper); font-size:14px; font-weight:600; }
+
+  /* BER scale visual */
+  .scale-card{
+    background:rgba(16,31,52,0.6); border:1px solid var(--line-dark); border-radius:4px;
+    padding:20px 20px 22px; backdrop-filter:blur(4px);
+  }
+  .scale-card .cap{ font-size:12.5px; color:#9caab5; margin-bottom:14px; }
+  .scale{ display:flex; flex-direction:column; gap:5px; }
+  .band{
+    position:relative; display:flex; align-items:center; justify-content:space-between;
+    padding:8px 12px; border-radius:2px; color:#0c1626; font-family:'Space Grotesk'; font-weight:700; font-size:13px;
+    width:100%; opacity:0.92;
+  }
+  .band span.w{ font-size:11px; font-weight:600; opacity:0.75; }
+  .band[data-b="A1"]{ background:#12864a; color:#eafbef; width:46%; }
+  .band[data-b="A2"]{ background:#1e8f4e; color:#eafbef; width:52%; }
+  .band[data-b="A3"]{ background:#3e9e4b; color:#eafbef; width:58%; }
+  .band[data-b="B1"]{ background:#5fac45; color:#0c1626; width:64%; }
+  .band[data-b="B2"]{ background:#7ab648; color:#0c1626; width:70%; }
+  .band[data-b="C1"]{ background:#c7c23a; color:#0c1626; width:76%; }
+  .band[data-b="C2"]{ background:#e8c435; color:#0c1626; width:82%; }
+  .band[data-b="D1"]{ background:#eda52f; color:#0c1626; width:88%; }
+  .band[data-b="D2"]{ background:#e8912f; color:#0c1626; width:94%; }
+  .band[data-b="E1"]{ background:#e0752c; color:#fff; width:100%; }
+  .band.pointer::after{
+    content:'YOUR RATING'; position:absolute; right:-8px; top:50%; transform:translate(100%,-50%);
+    background:var(--paper); color:var(--navy-950); font-size:10.5px; letter-spacing:0.03em;
+    padding:4px 8px; border-radius:2px; font-family:'Inter'; font-weight:600;
+    opacity:0; animation: popin 0.6s ease 1.4s forwards;
+    display:none;
+  }
+  @media(min-width:760px){ .band.pointer::after{ display:block; } }
+  .band.pointer{ animation: growband 1s ease 0.5s both; }
+  @keyframes growband{ from{ transform:scaleX(0); transform-origin:left; } to{ transform:scaleX(1); transform-origin:left; } }
+  @keyframes popin{ from{ opacity:0; transform:translate(80%,-50%); } to{ opacity:1; transform:translate(100%,-50%); } }
+  @media (prefers-reduced-motion: reduce){
+    .band.pointer{ animation:none; }
+    .band.pointer::after{ animation:none; opacity:1; }
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:84px 0; }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .kicker{ font-size:13.5px; color:var(--lime-deep); font-weight:600; margin-bottom:12px; }
+  .section-head h2{ font-size:clamp(26px,3.2vw,36px); line-height:1.15; color:var(--ink); }
+  .section-head p{ margin-top:14px; font-size:16px; line-height:1.6; color:var(--ink-soft); max-width:54ch; }
+
+  /* ---------- SERVICES (alternating rows) ---------- */
+  .services{ background:var(--paper); }
+  .svc-row{
+    display:grid; grid-template-columns:0.9fr 1.4fr; gap:40px; align-items:start;
+    padding:34px 0; border-top:1px solid var(--line);
+  }
+  .svc-row:last-child{ border-bottom:1px solid var(--line); }
+  .svc-row h3{ font-size:22px; font-weight:600; color:var(--ink); }
+  .svc-row .tag{ display:inline-block; margin-top:10px; font-size:12.5px; color:var(--lime-deep); font-weight:600; }
+  .svc-row p{ font-size:15.5px; line-height:1.65; color:var(--ink-soft); max-width:58ch; }
+
+  /* ---------- PROCESS (real sequence -> numbered) ---------- */
+  .process{ background:var(--navy-950); color:var(--paper); }
+  .process .section-head h2{ color:var(--paper); }
+  .process .section-head p{ color:#aab5be; }
+  .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+  .steps::before{
+    content:''; position:absolute; top:19px; left:0; right:0; height:1px; background:var(--line-dark);
+  }
+  .step{ position:relative; padding-right:24px; }
+  .step .num{
+    width:38px; height:38px; border-radius:50%; background:var(--navy-950); border:1px solid var(--lime);
+    color:var(--lime); font-family:'Space Grotesk'; font-weight:700; font-size:14px;
+    display:flex; align-items:center; justify-content:center; position:relative; z-index:1;
+  }
+  .step h3{ font-size:16.5px; font-weight:600; margin-top:18px; color:var(--paper); }
+  .step p{ font-size:14px; line-height:1.6; color:#9caab5; margin-top:8px; }
+
+  /* ---------- ABOUT ---------- */
+  .about{ background:var(--paper); }
+  .about-grid{ display:grid; grid-template-columns:0.75fr 1.25fr; gap:56px; align-items:center; }
+  .portrait{
+    aspect-ratio:4/5; border-radius:4px; background:linear-gradient(155deg, var(--navy-900), var(--navy-800));
+    position:relative; overflow:hidden; border:1px solid var(--line);
+  }
+  .portrait svg{ position:absolute; inset:0; width:100%; height:100%; }
+  .portrait .plate{
+    position:absolute; left:16px; right:16px; bottom:16px;
+    background:rgba(12,22,38,0.72); backdrop-filter:blur(6px); border-radius:3px;
+    padding:14px 16px; color:var(--paper);
+  }
+  .plate .name{ font-family:'Space Grotesk'; font-weight:700; font-size:17px; }
+  .plate .role{ font-size:12.5px; color:var(--lime); font-weight:600; margin-top:2px; }
+  .about-copy h2{ font-size:clamp(24px,3vw,32px); color:var(--ink); margin-bottom:18px; }
+  .about-copy p{ font-size:15.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:16px; max-width:56ch; }
+  .checklist{ list-style:none; margin:26px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:12px 24px; }
+  .checklist li{ display:flex; gap:10px; align-items:flex-start; font-size:14.5px; color:var(--ink); }
+  .checklist li svg{ width:17px; height:17px; flex:none; margin-top:2px; color:var(--lime-deep); }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ background:var(--navy-950); color:var(--paper); }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  .contact h2{ font-size:clamp(26px,3.2vw,34px); max-width:12ch; }
+  .contact p.lede{ margin-top:14px; color:#aab5be; font-size:15.5px; line-height:1.6; max-width:42ch; }
+  .cinfo{ margin-top:34px; display:flex; flex-direction:column; gap:18px; }
+  .cinfo a, .cinfo div.item{ display:flex; align-items:center; gap:14px; color:var(--paper); text-decoration:none; font-size:15.5px; }
+  .cinfo svg{ width:20px; height:20px; color:var(--lime); flex:none; }
+
+  .form{ background:var(--navy-900); border:1px solid var(--line-dark); border-radius:4px; padding:28px; }
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:12.5px; color:#aab5be; margin-bottom:6px; font-weight:500; }
+  .field input, .field select, .field textarea{
+    width:100%; background:var(--navy-950); border:1px solid var(--line-dark); color:var(--paper);
+    border-radius:3px; padding:11px 12px; font-family:'Inter'; font-size:14.5px; outline:none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{ border-color:var(--lime); }
+  .field textarea{ resize:vertical; min-height:80px; }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .submit{
+    width:100%; background:var(--lime); color:var(--navy-950); font-weight:600; font-size:15px;
+    padding:13px; border:none; border-radius:3px; cursor:pointer; margin-top:4px;
+  }
+  .submit:hover{ background:#9fd458; }
+  .form-note{ font-size:12.5px; color:#7c8894; margin-top:12px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--navy-950); border-top:1px solid var(--line-dark); padding:28px 0; }
+  .foot-row{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  .foot-brand{ display:flex; align-items:center; gap:10px; color:#aab5be; font-size:13px; }
+  .foot-brand svg{ width:20px; height:20px; }
+  footer nav{ display:flex; gap:22px; }
+  footer nav a{ color:#aab5be; text-decoration:none; font-size:13px; }
+  footer nav a:hover{ color:var(--paper); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    nav.links{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; padding:54px 0 44px; }
+    .svc-row{ grid-template-columns:1fr; gap:14px; }
+    .steps{ grid-template-columns:1fr 1fr; row-gap:32px; }
+    .steps::before{ display:none; }
+    .about-grid{ grid-template-columns:1fr; }
+    .checklist{ grid-template-columns:1fr; }
+    .contact-grid{ grid-template-columns:1fr; }
+    .row2{ grid-template-columns:1fr; }
+  }
+  @media (max-width:520px){
+    .wrap{ padding:0 20px; }
+    section{ padding:60px 0; }
+    .hero-foot{ gap:18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap navrow">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M24 4 4 20h6v22h28V20h6L24 4Z" stroke="#8bc53f" stroke-width="2.6" stroke-linejoin="round"/>
+        <path d="M14 28l6 6 14-16" stroke="#f4f5f0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-text">
+        <span class="b1">BER Domestic</span><br>
+        <span class="b2">SOLUTIONS</span>
+      </span>
+    </a>
+    <nav class="links">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="call-btn" href="tel:+353852288348">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      085 228 8348
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding-bottom:0;">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow-line"><span class="dot"></span><span>SEAI-registered BER Domestic Assessor · Nationwide</span></div>
+        <h1>Know your home's energy rating. <em>Improve it with confidence.</em></h1>
+        <p class="lede">BER Domestic Solutions carries out accurate, compliant Building Energy Rating assessments for homeowners, landlords and new-build clients across Ireland — plus the advisory reports you need for SEAI grants.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="#contact">Request a quote</a>
+          <a class="btn-ghost" href="tel:+353852288348">Call 085 228 8348</a>
+        </div>
+        <div class="hero-foot">
+          <div><strong>Accurate assessments</strong>Carried out to SEAI's DEAP methodology</div>
+          <div><strong>Compliant reports</strong>Up to date with the latest standards</div>
+          <div><strong>Nationwide cover</strong>Homes, rentals and new builds</div>
+        </div>
+      </div>
+      <div class="scale-card">
+        <div class="cap">Building Energy Rating scale</div>
+        <div class="scale">
+          <div class="band" data-b="A1">A1 <span class="w">most efficient</span></div>
+          <div class="band" data-b="A2">A2 <span class="w"></span></div>
+          <div class="band" data-b="A3">A3 <span class="w"></span></div>
+          <div class="band" data-b="B1">B1 <span class="w"></span></div>
+          <div class="band" data-b="B2">B2 <span class="w"></span></div>
+          <div class="band" data-b="C1">C1 <span class="w"></span></div>
+          <div class="band" data-b="C2">C2 <span class="w"></span></div>
+          <div class="band" data-b="D1">D1 <span class="w"></span></div>
+          <div class="band" data-b="D2">D2 <span class="w"></span></div>
+          <div class="band pointer" data-b="E1">E1 <span class="w">your home, before upgrades</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Services</div>
+        <h2>Assessments and advice for every stage of a home's life</h2>
+        <p>From a straight-up certificate for a sale or letting, to a full advisory report ahead of a retrofit, every assessment is carried out independently and submitted directly to the SEAI National BER Register.</p>
+      </div>
+
+      <div class="svc-row">
+        <h3>BER for sale &amp; rental</h3>
+        <p>A valid BER certificate is a legal requirement before you can advertise a home for sale or rent. A site visit is arranged at a time that suits you, and your certificate — together with the accompanying advisory report — is issued and published on the SEAI register, usually within a few working days.
+          <span class="tag">Legally required for listing</span>
+        </p>
+      </div>
+      <div class="svc-row">
+        <h3>New dwelling BER</h3>
+        <p>Provisional BER assessments from design-stage drawings, followed by a Final BER once the build is complete, snagged and ready for handover. Works with self-builders, builders and architects to keep the paperwork moving alongside the build programme.
+          <span class="tag">Provisional &amp; final certificates</span>
+        </p>
+      </div>
+      <div class="svc-row">
+        <h3>SEAI grant &amp; retrofit advisory</h3>
+        <p>A pre-works BER assessment establishes your home's starting point and the post-works assessment confirms the improvement — both are needed to draw down SEAI grants for insulation, heat pumps and other upgrades. The advisory report sets out which measures will move the rating furthest.
+          <span class="tag">Pre &amp; post-works assessments</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker" style="color:var(--lime);">How it works</div>
+        <h2>Four steps from enquiry to certificate</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Get in touch</h3>
+          <p>Call or email with your address and property type for a fast, no-obligation quote.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Site visit</h3>
+          <p>Enda surveys the building fabric, heating system, ventilation and lighting on site.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>DEAP calculation</h3>
+          <p>Survey data is entered into SEAI's official software to calculate your rating.</p>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <h3>Certificate &amp; report</h3>
+          <p>You receive your BER certificate plus a plain-English advisory report on next steps.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="portrait">
+        <svg viewBox="0 0 300 375" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#16293f"/><stop offset="1" stop-color="#0c1626"/>
+            </linearGradient>
+          </defs>
+          <rect width="300" height="375" fill="url(#g1)"/>
+          <path d="M150 30 40 120h30v110h160V120h30L150 30Z" stroke="#8bc53f" stroke-width="3" fill="none" opacity="0.5"/>
+          <path d="M95 165l35 35 78-88" stroke="#f4f5f0" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+        </svg>
+        <div class="plate">
+          <div class="name">Enda Boyce</div>
+          <div class="role">BER Domestic Assessor</div>
+        </div>
+      </div>
+      <div class="about-copy">
+        <div class="kicker">About</div>
+        <h2>A registered assessor who works directly with you, start to finish</h2>
+        <p>Enda Boyce is a registered BER Domestic Assessor providing professional Building Energy Rating assessments to homeowners, landlords, and new-build clients nationwide. Every assessment is carried out independently, in line with SEAI's Code of Practice and current Building Regulations, with results reported back in plain language rather than technical jargon.</p>
+        <p>Whether you need a certificate to meet a legal deadline for a sale or letting, or a full advisory report to plan an energy upgrade, the same assessment turns into a clear, practical next step for your home.</p>
+        <ul class="checklist">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Accurate, independent assessments</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Compliant with the latest standards</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Supporting energy efficiency</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Trusted local expertise</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="kicker" style="color:var(--lime);">Get in touch</div>
+        <h2>Book your assessment</h2>
+        <p class="lede">Send over your address and a few details about the property, and you'll get a straightforward quote and the next available date.</p>
+        <div class="cinfo">
+          <a href="tel:+353852288348">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            085 228 8348
+          </a>
+          <a href="mailto:Berdomesticsolutions@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6 12 13 2 6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 6h20v12H2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Berdomesticsolutions@gmail.com
+          </a>
+          <div class="item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Providing professional BER assessments nationwide
+          </div>
+        </div>
+      </div>
+
+      <form class="form" onsubmit="return false;">
+        <div class="row2">
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" type="text" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" placeholder="085 000 0000" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="addr">Property address</label>
+          <input id="addr" type="text" placeholder="Address, county">
+        </div>
+        <div class="field">
+          <label for="type">What do you need?</label>
+          <select id="type">
+            <option>BER for sale or rental</option>
+            <option>New dwelling BER (provisional / final)</option>
+            <option>SEAI grant / retrofit advisory</option>
+            <option>Not sure — advise me</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="msg">Details</label>
+          <textarea id="msg" placeholder="Property type, size, and any timeline you're working to"></textarea>
+        </div>
+        <button class="submit" type="submit">Request a quote</button>
+        <p class="form-note">Preview site — connect this form to email or a booking tool before going live.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="foot-brand">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M24 4 4 20h6v22h28V20h6L24 4Z" stroke="#8bc53f" stroke-width="2.6" stroke-linejoin="round"/>
+        <path d="M14 28l6 6 14-16" stroke="#f4f5f0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      BER Domestic Solutions · Enda Boyce, BER Domestic Assessor
+    </div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
